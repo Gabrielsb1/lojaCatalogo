@@ -36,7 +36,8 @@ Este é um projeto de **Loja Virtual** desenvolvido utilizando **FlutterFlow** c
 
 ## 🚀 Como Rodar o Projeto
 1. Clone este repositório:
-   ```bash git clone https://github.com/seuusuario/loja-virtual.git
+   ```bash
+   git clone https://github.com/seuusuario/loja-virtual.git
 2. Abra o projeto no FlutterFlow.
 3. Customize e execute no ambiente de simulação ou diretamente no dispositivo.
 4. 
@@ -58,3 +59,10 @@ Simular armazenamento persistente de produtos, usuários e pedidos.
 📚 Referências
 Documentação do FlutterFlow.
 Material de estudo sobre Engenharia de Software baseada em Componentes.
+
+## 🌐 Acesse o Projeto Publicado
+Você pode acessar a loja virtual publicada através do link abaixo:
+
+🔗 [TechFlow - Loja Virtual](https://loja-virtual.flutterflow.app/)
+
+
