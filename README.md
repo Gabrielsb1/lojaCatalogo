@@ -63,6 +63,6 @@ Material de estudo sobre Engenharia de Software baseada em Componentes.
 ## 🌐 Acesse o Projeto Publicado
 Você pode acessar a loja virtual publicada através do link abaixo:
 
-🔗 [TechFlow - Loja Virtual]((https://techflow.flutterflow.app/))
+🔗 [TechFlow - Loja Virtual]([https://techflow.flutterflow.app/])
 
 
