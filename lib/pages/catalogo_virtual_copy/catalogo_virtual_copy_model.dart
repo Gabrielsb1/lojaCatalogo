@@ -4,13 +4,14 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_toggle_icon.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'catalogo_virtual_widget.dart' show CatalogoVirtualWidget;
+import 'catalogo_virtual_copy_widget.dart' show CatalogoVirtualCopyWidget;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class CatalogoVirtualModel extends FlutterFlowModel<CatalogoVirtualWidget> {
+class CatalogoVirtualCopyModel
+    extends FlutterFlowModel<CatalogoVirtualCopyWidget> {
   ///  State fields for stateful widgets in this page.
 
   // Model for headerCatalogo component.

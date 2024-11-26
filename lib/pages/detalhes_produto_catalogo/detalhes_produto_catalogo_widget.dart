@@ -684,6 +684,17 @@ class _DetalhesProdutoCatalogoWidgetState
                                                                     dynamic>{
                                                                   'loja':
                                                                       detalhesProdutoCatalogoMinhaLojaRecord,
+                                                                  kTransitionInfoKey:
+                                                                      TransitionInfo(
+                                                                    hasTransition:
+                                                                        true,
+                                                                    transitionType:
+                                                                        PageTransitionType
+                                                                            .fade,
+                                                                    duration: Duration(
+                                                                        milliseconds:
+                                                                            0),
+                                                                  ),
                                                                 },
                                                               );
                                                             } else {

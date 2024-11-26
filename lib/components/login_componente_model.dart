@@ -1,19 +1,16 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
-import '/componentes/header_catalogo/header_catalogo_widget.dart';
+import '/components/cadastro_cliente_componente_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'login_widget.dart' show LoginWidget;
+import 'login_componente_widget.dart' show LoginComponenteWidget;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class LoginModel extends FlutterFlowModel<LoginWidget> {
-  ///  State fields for stateful widgets in this page.
+class LoginComponenteModel extends FlutterFlowModel<LoginComponenteWidget> {
+  ///  State fields for stateful widgets in this component.
 
-  // Model for headerCatalogo component.
-  late HeaderCatalogoModel headerCatalogoModel;
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode1;
   TextEditingController? emailTextController;
@@ -26,13 +23,11 @@ class LoginModel extends FlutterFlowModel<LoginWidget> {
 
   @override
   void initState(BuildContext context) {
-    headerCatalogoModel = createModel(context, () => HeaderCatalogoModel());
     passwordVisibility = false;
   }
 
   @override
   void dispose() {
-    headerCatalogoModel.dispose();
     textFieldFocusNode1?.dispose();
     emailTextController?.dispose();
 

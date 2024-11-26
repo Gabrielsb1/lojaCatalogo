@@ -99,4 +99,33 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInImgProduto(int index, String value) {
     imgProduto.insert(index, value);
   }
+
+  List<double> _listaValore = [];
+  List<double> get listaValore => _listaValore;
+  set listaValore(List<double> value) {
+    _listaValore = value;
+  }
+
+  void addToListaValore(double value) {
+    listaValore.add(value);
+  }
+
+  void removeFromListaValore(double value) {
+    listaValore.remove(value);
+  }
+
+  void removeAtIndexFromListaValore(int index) {
+    listaValore.removeAt(index);
+  }
+
+  void updateListaValoreAtIndex(
+    int index,
+    double Function(double) updateFn,
+  ) {
+    listaValore[index] = updateFn(_listaValore[index]);
+  }
+
+  void insertAtIndexInListaValore(int index, double value) {
+    listaValore.insert(index, value);
+  }
 }

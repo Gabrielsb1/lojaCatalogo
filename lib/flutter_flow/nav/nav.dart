@@ -78,25 +78,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? CatalogoVirtualWidget() : LoginWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? CatalogoVirtualCopyWidget()
+          : CatalogoVirtualWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
-              ? CatalogoVirtualWidget()
-              : LoginWidget(),
-        ),
-        FFRoute(
-          name: 'Login',
-          path: '/login',
-          builder: (context, params) => LoginWidget(),
+              ? CatalogoVirtualCopyWidget()
+              : CatalogoVirtualWidget(),
         ),
         FFRoute(
           name: 'catalogoVirtual',
           path: '/catalogoVirtual',
-          requireAuth: true,
           builder: (context, params) => CatalogoVirtualWidget(
             urlLoja: params.getParam(
               'urlLoja',
@@ -107,7 +102,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Checkout',
           path: '/checkout',
-          requireAuth: true,
           asyncParams: {
             'loja': getDoc(['minhaLoja'], MinhaLojaRecord.fromSnapshot),
           },
@@ -121,7 +115,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'detalhesProdutoCatalogo',
           path: '/detalhesProdutoCatalogo',
-          requireAuth: true,
           asyncParams: {
             'detalhesProduto':
                 getDoc(['minhaLoja', 'produto'], ProdutoRecord.fromSnapshot),
@@ -134,15 +127,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'cadastroUsuario',
-          path: '/cadastroUsuario',
-          builder: (context, params) => CadastroUsuarioWidget(),
-        ),
-        FFRoute(
           name: 'Produtos',
           path: '/produtos',
           requireAuth: true,
           builder: (context, params) => ProdutosWidget(),
+        ),
+        FFRoute(
+          name: 'catalogoVirtualCopy',
+          path: '/catalogoVirtualCopy',
+          requireAuth: true,
+          builder: (context, params) => CatalogoVirtualCopyWidget(
+            urlLoja: params.getParam(
+              'urlLoja',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -313,7 +312,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/login';
+            return '/catalogoVirtual';
           }
           return null;
         },

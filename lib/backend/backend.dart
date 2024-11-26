@@ -12,6 +12,8 @@ import 'schema/categoria_record.dart';
 import 'schema/cliente_record.dart';
 import 'schema/carrinho_record.dart';
 import 'schema/produto_carrinho_record.dart';
+import 'schema/pedido_record.dart';
+import 'schema/produto_pedido_record.dart';
 
 export 'dart:async' show StreamSubscription;
 export 'package:cloud_firestore/cloud_firestore.dart' hide Order;
@@ -27,6 +29,8 @@ export 'schema/categoria_record.dart';
 export 'schema/cliente_record.dart';
 export 'schema/carrinho_record.dart';
 export 'schema/produto_carrinho_record.dart';
+export 'schema/pedido_record.dart';
+export 'schema/produto_pedido_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
 Future<int> queryUsersRecordCount({
@@ -294,6 +298,83 @@ Future<List<ProdutoCarrinhoRecord>> queryProdutoCarrinhoRecordOnce({
     queryCollectionOnce(
       ProdutoCarrinhoRecord.collection(parent),
       ProdutoCarrinhoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query PedidoRecords (as a Stream and as a Future).
+Future<int> queryPedidoRecordCount({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      PedidoRecord.collection,
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<PedidoRecord>> queryPedidoRecord({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      PedidoRecord.collection,
+      PedidoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<PedidoRecord>> queryPedidoRecordOnce({
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      PedidoRecord.collection,
+      PedidoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+/// Functions to query ProdutoPedidoRecords (as a Stream and as a Future).
+Future<int> queryProdutoPedidoRecordCount({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+}) =>
+    queryCollectionCount(
+      ProdutoPedidoRecord.collection(parent),
+      queryBuilder: queryBuilder,
+      limit: limit,
+    );
+
+Stream<List<ProdutoPedidoRecord>> queryProdutoPedidoRecord({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollection(
+      ProdutoPedidoRecord.collection(parent),
+      ProdutoPedidoRecord.fromSnapshot,
+      queryBuilder: queryBuilder,
+      limit: limit,
+      singleRecord: singleRecord,
+    );
+
+Future<List<ProdutoPedidoRecord>> queryProdutoPedidoRecordOnce({
+  DocumentReference? parent,
+  Query Function(Query)? queryBuilder,
+  int limit = -1,
+  bool singleRecord = false,
+}) =>
+    queryCollectionOnce(
+      ProdutoPedidoRecord.collection(parent),
+      ProdutoPedidoRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

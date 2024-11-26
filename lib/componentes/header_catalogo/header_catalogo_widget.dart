@@ -1,6 +1,11 @@
+import '/auth/base_auth_user_provider.dart';
 import '/backend/backend.dart';
+import '/components/cadastro_cliente_componente_widget.dart';
+import '/components/editar_pefil_componente_widget.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,11 +19,13 @@ class HeaderCatalogoWidget extends StatefulWidget {
     this.parameter1,
     this.parameter2,
     this.parameter3,
+    this.user,
   });
 
   final String? parameter1;
   final String? parameter2;
   final MinhaLojaRecord? parameter3;
+  final UsersRecord? user;
 
   @override
   State<HeaderCatalogoWidget> createState() => _HeaderCatalogoWidgetState();
@@ -105,6 +112,7 @@ class _HeaderCatalogoWidgetState extends State<HeaderCatalogoWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
                     splashColor: Colors.transparent,
@@ -148,82 +156,170 @@ class _HeaderCatalogoWidgetState extends State<HeaderCatalogoWidget> {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              FaIcon(
-                                FontAwesomeIcons.userCircle,
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                size: 24.0,
+                              Builder(
+                                builder: (context) => InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (loggedIn == true) {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child:
+                                                EditarPefilComponenteWidget(),
+                                          );
+                                        },
+                                      );
+                                    } else {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child:
+                                                CadastroClienteComponenteWidget(
+                                              tipoUsuario: 'cliente',
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                  child: FaIcon(
+                                    FontAwesomeIcons.userCircle,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 24.0,
+                                  ),
+                                ),
                               ),
-                              Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 4.0, 0.0),
-                                    child: Text(
-                                      'MINHA CONTA',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.w500,
+                              if (!loggedIn)
+                                Builder(
+                                  builder: (context) => InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      await showDialog(
+                                        context: context,
+                                        builder: (dialogContext) {
+                                          return Dialog(
+                                            elevation: 0,
+                                            insetPadding: EdgeInsets.zero,
+                                            backgroundColor: Colors.transparent,
+                                            alignment: AlignmentDirectional(
+                                                    0.0, 0.0)
+                                                .resolve(
+                                                    Directionality.of(context)),
+                                            child:
+                                                CadastroClienteComponenteWidget(
+                                              tipoUsuario: 'cliente',
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 4.0, 0.0),
+                                          child: Text(
+                                            'ENTRAR / CADASTRAR',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Inter',
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                           ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 4.0, 0.0),
-                                    child: Text(
-                                      'ENTRAR / CADASTRAR',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
                             ].divide(SizedBox(width: 10.0)),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Column(
+                  Row(
                     mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(
-                            'Checkout',
-                            queryParameters: {
-                              'loja': serializeParam(
-                                widget!.parameter3,
-                                ParamType.Document,
-                              ),
-                            }.withoutNulls,
-                            extra: <String, dynamic>{
-                              'loja': widget!.parameter3,
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 0.0),
+                        child: badges.Badge(
+                          badgeContent: Text(
+                            '',
+                            style: FlutterFlowTheme.of(context)
+                                .titleSmall
+                                .override(
+                                  fontFamily: 'Inter Tight',
+                                  color: Colors.white,
+                                  letterSpacing: 0.0,
+                                ),
+                          ),
+                          showBadge: false,
+                          shape: badges.BadgeShape.circle,
+                          badgeColor: FlutterFlowTheme.of(context).primary,
+                          elevation: 4.0,
+                          padding: EdgeInsets.all(8.0),
+                          position: badges.BadgePosition.topEnd(),
+                          animationType: badges.BadgeAnimationType.scale,
+                          toAnimate: true,
+                          child: FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 20.0,
+                            buttonSize: 40.0,
+                            fillColor: Color(0x00F1F4F8),
+                            icon: Icon(
+                              Icons.shopping_cart_outlined,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 30.0,
+                            ),
+                            onPressed: () async {
+                              context.pushNamed(
+                                'Checkout',
+                                queryParameters: {
+                                  'loja': serializeParam(
+                                    widget!.parameter3,
+                                    ParamType.Document,
+                                  ),
+                                }.withoutNulls,
+                                extra: <String, dynamic>{
+                                  'loja': widget!.parameter3,
+                                },
+                              );
                             },
-                          );
-                        },
-                        child: Icon(
-                          Icons.shopping_cart_outlined,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 34.0,
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ].divide(SizedBox(width: 44.0)),
+                ],
               ),
             ],
           ),

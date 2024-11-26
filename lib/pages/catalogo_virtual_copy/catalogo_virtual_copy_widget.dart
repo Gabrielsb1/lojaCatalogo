@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'catalogo_virtual_model.dart';
-export 'catalogo_virtual_model.dart';
+import 'catalogo_virtual_copy_model.dart';
+export 'catalogo_virtual_copy_model.dart';
 
-class CatalogoVirtualWidget extends StatefulWidget {
-  const CatalogoVirtualWidget({
+class CatalogoVirtualCopyWidget extends StatefulWidget {
+  const CatalogoVirtualCopyWidget({
     super.key,
     this.urlLoja,
   });
@@ -20,18 +20,19 @@ class CatalogoVirtualWidget extends StatefulWidget {
   final String? urlLoja;
 
   @override
-  State<CatalogoVirtualWidget> createState() => _CatalogoVirtualWidgetState();
+  State<CatalogoVirtualCopyWidget> createState() =>
+      _CatalogoVirtualCopyWidgetState();
 }
 
-class _CatalogoVirtualWidgetState extends State<CatalogoVirtualWidget> {
-  late CatalogoVirtualModel _model;
+class _CatalogoVirtualCopyWidgetState extends State<CatalogoVirtualCopyWidget> {
+  late CatalogoVirtualCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CatalogoVirtualModel());
+    _model = createModel(context, () => CatalogoVirtualCopyModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -73,15 +74,15 @@ class _CatalogoVirtualWidgetState extends State<CatalogoVirtualWidget> {
             ),
           );
         }
-        List<MinhaLojaRecord> catalogoVirtualMinhaLojaRecordList =
+        List<MinhaLojaRecord> catalogoVirtualCopyMinhaLojaRecordList =
             snapshot.data!;
         // Return an empty Container when the item does not exist.
         if (snapshot.data!.isEmpty) {
           return Container();
         }
-        final catalogoVirtualMinhaLojaRecord =
-            catalogoVirtualMinhaLojaRecordList.isNotEmpty
-                ? catalogoVirtualMinhaLojaRecordList.first
+        final catalogoVirtualCopyMinhaLojaRecord =
+            catalogoVirtualCopyMinhaLojaRecordList.isNotEmpty
+                ? catalogoVirtualCopyMinhaLojaRecordList.first
                 : null;
 
         return GestureDetector(
@@ -121,12 +122,13 @@ class _CatalogoVirtualWidgetState extends State<CatalogoVirtualWidget> {
                       model: _model.headerCatalogoModel,
                       updateCallback: () => safeSetState(() {}),
                       child: HeaderCatalogoWidget(
-                        parameter1: catalogoVirtualMinhaLojaRecord?.logoLoja,
+                        parameter1:
+                            catalogoVirtualCopyMinhaLojaRecord?.logoLoja,
                         parameter2: valueOrDefault<String>(
-                          catalogoVirtualMinhaLojaRecord?.nomeLoja,
+                          catalogoVirtualCopyMinhaLojaRecord?.nomeLoja,
                           '0',
                         ),
-                        parameter3: catalogoVirtualMinhaLojaRecord,
+                        parameter3: catalogoVirtualCopyMinhaLojaRecord,
                       ),
                     ),
                     Row(
@@ -242,7 +244,7 @@ class _CatalogoVirtualWidgetState extends State<CatalogoVirtualWidget> {
                                                     List<CategoriaRecord>>(
                                                   stream: queryCategoriaRecord(
                                                     parent:
-                                                        catalogoVirtualMinhaLojaRecord
+                                                        catalogoVirtualCopyMinhaLojaRecord
                                                             ?.reference,
                                                   ),
                                                   builder: (context, snapshot) {
@@ -405,7 +407,7 @@ class _CatalogoVirtualWidgetState extends State<CatalogoVirtualWidget> {
                                                   List<ProdutoRecord>>(
                                                 stream: queryProdutoRecord(
                                                   parent:
-                                                      catalogoVirtualMinhaLojaRecord
+                                                      catalogoVirtualCopyMinhaLojaRecord
                                                           ?.reference,
                                                   queryBuilder:
                                                       (produtoRecord) =>
@@ -765,7 +767,7 @@ class _CatalogoVirtualWidgetState extends State<CatalogoVirtualWidget> {
                                                   List<ProdutoRecord>>(
                                                 stream: queryProdutoRecord(
                                                   parent:
-                                                      catalogoVirtualMinhaLojaRecord
+                                                      catalogoVirtualCopyMinhaLojaRecord
                                                           ?.reference,
                                                   queryBuilder:
                                                       (produtoRecord) =>
@@ -1142,7 +1144,7 @@ class _CatalogoVirtualWidgetState extends State<CatalogoVirtualWidget> {
                                                   List<ProdutoRecord>>(
                                                 stream: queryProdutoRecord(
                                                   parent:
-                                                      catalogoVirtualMinhaLojaRecord
+                                                      catalogoVirtualCopyMinhaLojaRecord
                                                           ?.reference,
                                                   queryBuilder:
                                                       (produtoRecord) =>
@@ -1508,7 +1510,7 @@ class _CatalogoVirtualWidgetState extends State<CatalogoVirtualWidget> {
                                                   List<ProdutoRecord>>(
                                                 stream: queryProdutoRecord(
                                                   parent:
-                                                      catalogoVirtualMinhaLojaRecord
+                                                      catalogoVirtualCopyMinhaLojaRecord
                                                           ?.reference,
                                                   queryBuilder:
                                                       (produtoRecord) =>

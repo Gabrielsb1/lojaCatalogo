@@ -894,37 +894,42 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                                                                         MainAxisAlignment
                                                                             .spaceBetween,
                                                                     children: [
-                                                                      Text(
-                                                                        '${listViewProdutoCarrinhoRecord.quantidade.toString()}x ${propertyAddressProdutoRecord.nomeProduto}',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodySmall
-                                                                            .override(
-                                                                              fontFamily: 'Outfit',
-                                                                              color: FlutterFlowTheme.of(context).secondaryText,
-                                                                              fontSize: 14.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FontWeight.normal,
-                                                                            ),
-                                                                      ),
-                                                                      Text(
-                                                                        formatNumber(
-                                                                          listViewProdutoCarrinhoRecord
-                                                                              .subtotal,
-                                                                          formatType:
-                                                                              FormatType.decimal,
-                                                                          decimalType:
-                                                                              DecimalType.commaDecimal,
-                                                                          currency:
-                                                                              'R\$ ',
+                                                                      Expanded(
+                                                                        child:
+                                                                            Text(
+                                                                          '${listViewProdutoCarrinhoRecord.quantidade.toString()}x ${propertyAddressProdutoRecord.nomeProduto}',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodySmall
+                                                                              .override(
+                                                                                fontFamily: 'Outfit',
+                                                                                color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                fontSize: 14.0,
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.normal,
+                                                                              ),
                                                                         ),
-                                                                        textAlign:
-                                                                            TextAlign.end,
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyLarge
-                                                                            .override(
-                                                                              fontFamily: 'Inter',
-                                                                              letterSpacing: 0.0,
-                                                                            ),
+                                                                      ),
+                                                                      Expanded(
+                                                                        child:
+                                                                            Text(
+                                                                          formatNumber(
+                                                                            listViewProdutoCarrinhoRecord.subtotal,
+                                                                            formatType:
+                                                                                FormatType.decimal,
+                                                                            decimalType:
+                                                                                DecimalType.commaDecimal,
+                                                                            currency:
+                                                                                'R\$ ',
+                                                                          ),
+                                                                          textAlign:
+                                                                              TextAlign.end,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyLarge
+                                                                              .override(
+                                                                                fontFamily: 'Inter',
+                                                                                letterSpacing: 0.0,
+                                                                              ),
+                                                                        ),
                                                                       ),
                                                                     ],
                                                                   );
