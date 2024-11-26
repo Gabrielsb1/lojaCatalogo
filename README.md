@@ -40,7 +40,7 @@ Este é um projeto de **Loja Virtual** desenvolvido utilizando **FlutterFlow** c
    git clone https://github.com/seuusuario/loja-virtual.git
 2. Abra o projeto no FlutterFlow.
 3. Customize e execute no ambiente de simulação ou diretamente no dispositivo.
-4. 
+
 💡 Requisitos Funcionais Atendidos
 1. Gerenciamento de Produtos
 Lista de produtos com nome, descrição, preço e imagem.
